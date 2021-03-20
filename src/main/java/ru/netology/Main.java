@@ -27,12 +27,12 @@ public class Main {
         list.add("I took the one less traveled by,");
         list.add("And that has made all the difference.");
 
-        Set<String> words = list.stream()
+        Set<String> dictionary = list.stream()
                 .map(word -> word.replaceAll("\\p{Punct}", ""))
                 .flatMap(word -> Arrays.stream(word.split(" ")))
                 .map(word -> word.substring(0, 1).toUpperCase(Locale.ROOT) + word.substring(1).toLowerCase(Locale.ROOT))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(TreeSet::new));
 
-        words.forEach(System.out::println);
+        dictionary.forEach(System.out::println);
     }
 }
